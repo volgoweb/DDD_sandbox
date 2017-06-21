@@ -1,1 +1,66 @@
 {% extends "frontend/layout.html" %}
+{% load static %}
+
+{% block title %}
+    Catalog
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+
+    <div class="prodcatalog">
+        <div class="prodcatalog__filters"></div>
+
+        <div id="products-list">
+            <ul>
+                <proditem
+                        v-for="product in products"
+                        v-bind:product="product"
+                        v-bind:key="product.id"
+                >
+                    <template id="tpl-proditem">
+                        <li class="proditem">
+                            <a href="#" class="proditem__link" @click="add_to_cart(product.id)">${ product.name }</a>
+                        </li>
+                    </template>
+                </proditem>
+            </ul>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block js_bottom %}
+    {{ block.super }}
+
+    <script src="{% static "third-party/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "third-party/vue/vue.min.js" %}"></script>
+    <script>
+        Vue.component('proditem', {
+            delimiters: ['${', '}'],
+            props: ['product'],
+            template: '#tpl-proditem',
+            methods: {
+                add_to_cart: function(product_id) {
+                    var data = {
+                        product_id: product_id,
+                        quantity: 1,
+                    };
+                    $.post('/carts/add-to-cart/', data).success(function(d){
+                        alert('ok');
+                    })
+                }
+            }
+        });
+        var product_list = new Vue({
+            delimiters: ['${', '}'],
+            el: '#products-list',
+            data: {
+                products: [
+                  { id: 0, name: 'Vegetables' },
+                  { id: 1, name: 'Cheese' },
+                  { id: 2, name: 'Whatever else humans are supposed to eat' }
+                ]
+            }
+        });
+    </script>
+{% endblock %}

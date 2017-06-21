@@ -1,4 +1,4 @@
 class ICommand(object):
-    def run(self, *args, **kwargs):
+    def execute(self, *args, **kwargs):
         raise NotImplementedError
 

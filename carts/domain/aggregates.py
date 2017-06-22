@@ -1,7 +1,8 @@
 from ..adapters import prices as prices_adapter
+from .entities import CartItem
 
 class Cart(object):
-    def __init__(self, owner: CartOwner):
+    def __init__(self, owner):
         """
         :param owner: Так как в некоторых проектах у каждого юзера должны быть разные корзины 
         для каждого менеджера контрагента,

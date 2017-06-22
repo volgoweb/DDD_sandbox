@@ -1,7 +1,7 @@
 
 
 class CartItem(object):
-    def __init__(self, id_: int, product_modification: ProductModification):
+    def __init__(self, id_: int, product_id: int):
         pass
 
 

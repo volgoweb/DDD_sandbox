@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.views.generic import TemplateView
 
-from .views import add_to_cart
+from .views import add_to_cart_view, get_products
 
 
 urlpatterns = [
-    url(r'^catalog/', TemplateView.as_view(template_name='frontend/catalog.html'), name='catalog'),
-    url(r'^carts/add-to-cart/', add_to_cart, name='add_to_cart'),
+    url(r'^$', TemplateView.as_view(template_name='frontend/catalog.html'), name='catalog'),
+    url(r'^catalog/$', TemplateView.as_view(template_name='frontend/catalog.html'), name='catalog'),
+    url(r'^catalog/products-ajax/$', get_products, name='get_products_ajax'),
+    url(r'^carts/add-to-cart/$', add_to_cart_view, name='add_to_cart'),
 ]

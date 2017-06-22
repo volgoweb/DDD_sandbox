@@ -1,10 +1,6 @@
 from ..domain.aggregates import Cart
 from ..domain.entities import CartItem
-
-
-class ICartsRepo(object):
-    def get_or_create(self, user_id: int, product_id: int) -> Cart:
-        raise NotImplementedError
+from ..domain.repository_interfaces import ICartsRepo
 
 
 class DemoCartsRepo(ICartsRepo):
@@ -14,10 +10,3 @@ class DemoCartsRepo(ICartsRepo):
             user_id=user_id,
         )
         return cart
-
-
-# if settings.DEMO_MODE:
-#     CartRepo = DemoCartsRepo
-# else:
-#     CartRepo = CartsRepo
-CartRepo = DemoCartsRepo

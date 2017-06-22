@@ -8,9 +8,7 @@
 {% block content %}
     {{ block.super }}
 
-    <div class="prodcatalog">
-        <div class="prodcatalog__filters"></div>
-
+    <div class="cart">
         <div id="products-list">
             <ul>
                 <proditem
@@ -49,14 +47,16 @@
                 }
             }
         });
-        $.get('/catalog/products-ajax/', function(data){
-            var product_list = new Vue({
-                delimiters: ['${', '}'],
-                el: '#products-list',
-                data: {
-                    products: data['objects'],
-                }
-            });
+        var product_list = new Vue({
+            delimiters: ['${', '}'],
+            el: '#products-list',
+            data: {
+                products: [
+                  { id: 0, name: 'Vegetables' },
+                  { id: 1, name: 'Cheese' },
+                  { id: 2, name: 'Whatever else humans are supposed to eat' }
+                ]
+            }
         });
     </script>
 {% endblock %}

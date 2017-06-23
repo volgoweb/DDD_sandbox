@@ -1,4 +1,5 @@
 from ..repositories.register import RepositoryRegister
+from ..domain.entities import CartItem
 from orchestrator.command_handler_registers import ICommandHandler
 #
 # api.command_dispatcher -> Pick up Command Handler -> CommandHandler(**kwargs)
@@ -53,15 +54,18 @@ from orchestrator.command_handler_registers import ICommandHandler
 class AddToCartHandler(ICommandHandler):
     def __init__(self):
         self.cart_repository = RepositoryRegister().get('CartRepository')
+        self.item_entity = CartItem
         # self.prices_adapter = prices_adapter
 
     def handle(self, command):
         cart = self.cart_repository.get_by_user_id(command.user_id)
-        item = Item(
+        item = self.item_entity(
             product_id=command.product_id,
             quantity=command.quantity,
             # price=self.get_price(command.product_id, command.user_id),
         )
+        cart.add_item(item)
+        self.cart_repository.save_one(cart)
 
     # def get_price(self, product_id, user_id):
     #     spec = ProductPriceQuerySpec()

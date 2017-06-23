@@ -9,4 +9,4 @@ class CartItem(models.Model):
     cart_id = models.IntegerField()
     product_id = models.IntegerField()
     quantity = models.PositiveSmallIntegerField(default=0, blank=True)
-    price = models.DecimalField(blank=True, null=True)
+    price = models.FloatField(blank=True, null=True)

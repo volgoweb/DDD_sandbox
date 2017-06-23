@@ -2,8 +2,8 @@ class Entity(object):
     """Базовый класс агрегата"""
     @property
     def id(self):
-        return self._id
+        return self.__id
 
-    @property.setter(id)
+    @id.setter
     def set_id(self):
         raise NotImplemented

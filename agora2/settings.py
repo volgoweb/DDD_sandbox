@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     'agora2',
     'frontend',
+    'orchestrator',
+    'carts',
+    'products',
 ]
 
 MIDDLEWARE = [

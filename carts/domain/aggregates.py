@@ -12,10 +12,18 @@ class Cart(Aggregate):
         а в остальных - общая корзина на всех менеджеров контрагента, то owner в этом контексте - владелец, который 
         может быть как сущностью contractor, так и сущностью менеджер контраагента
         """
-        self._id = _id
-        self._items = []
-        self.sum_of_items = None
-        self.sum_total = None
+        self.__id = _id
+        self.__items = []
+        self.__sum_of_items = None
+        self.__sum_total = None
+
+    @property
+    def items(self):
+        return self.__items
+
+    @items.setter
+    def set_items(self):
+        raise
 
     def get_items(self) -> list:
         pass

@@ -20,7 +20,8 @@
                 >
                     <template id="tpl-proditem">
                         <li class="proditem">
-                            <a href="#" class="proditem__link" @click="add_to_cart(product.id)">${ product.name }</a>
+                            <strong>${ product.name }</strong>
+                             (<a href="#" class="proditem__link" @click="add_to_cart(product.id)">Add to cart</a>)
                         </li>
                     </template>
                 </proditem>
@@ -43,7 +44,7 @@
                         product_id: product_id,
                         quantity: 1,
                     };
-                    $.post('/carts/add-to-cart/', data).success(function(d){
+                    $.post('/carts/add-to-cart/', data, function(d){
                         alert('ok');
                     })
                 }

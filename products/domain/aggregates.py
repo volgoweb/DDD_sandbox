@@ -1,9 +1,11 @@
+from orchestrator.aggregates import Aggregate
 from .value_objects import Price
 
 
-class Product(object):
-    def __init__(self, id_: int, name: str):
-        pass
+class Product(Aggregate):
+    def __init__(self, name: str, _id: int=None):
+        self._id = _id
+        self.name = name
 
 
 class ProductModification(object):

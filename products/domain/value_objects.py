@@ -1,11 +1,6 @@
 from django.utils.translation import ugettext_lazy as l_
 
 
-class Price(object):
-    def __init__(self, id_: int, currency: Currency, type: PriceType):
-        pass
-
-
 class Currency(object):
     CODE_RUB = 'rub'
     CODE_NAME_MAP = {
@@ -23,3 +18,8 @@ class Currency(object):
 
     def get_name_by_code(self, code: str):
         return self.CODE_NAME_MAP[code]
+
+
+class Price(object):
+    def __init__(self, id_: int, currency: Currency):
+        pass

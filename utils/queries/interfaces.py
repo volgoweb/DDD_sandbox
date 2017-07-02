@@ -1,3 +1,4 @@
 class IQuery(object):
-    def query(self):
+    @classmethod
+    def get_query_type_name(cls):
         raise NotImplementedError

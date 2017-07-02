@@ -1,9 +1,10 @@
 from utils.queries import IQuery
 
 
-class CartItems(IQuery):
-    def __init__(self, cart_id: int):
-        self.cart_id = cart_id
+class CartOfUserQuery(IQuery):
+    @classmethod
+    def get_query_type_name(cls):
+        return 'carts.CartOfUser'
 
-    def get(self, limit: int):
-        pass
+    def __init__(self, user_id: int):
+        self.user_id = user_id

@@ -10,3 +10,6 @@ class CartItem(models.Model):
     product_id = models.IntegerField()
     quantity = models.PositiveSmallIntegerField(default=0, blank=True)
     price = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        unique_together = ['cart_id', 'product_id']

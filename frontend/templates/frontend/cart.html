@@ -2,26 +2,27 @@
 {% load static %}
 
 {% block title %}
-    Catalog
+    Cart
 {% endblock %}
 
 {% block content %}
     {{ block.super }}
 
     <div class="cart">
-        <div id="products-list">
+        <div id="cart-items">
             <ul>
-                <proditem
-                        v-for="product in products"
-                        v-bind:product="product"
-                        v-bind:key="product.id"
+                <cartitem
+                        v-for="item in items"
+                        v-bind:item="item"
+                        v-bind:key="item.id"
                 >
-                    <template id="tpl-proditem">
-                        <li class="proditem">
-                            <a href="#" class="proditem__link" @click="add_to_cart(product.id)">${ product.name }</a>
+                    <template id="tpl-cart-item">
+                        <li class="cart-item">
+                            ${ item.product_name }
+                             (<a href="#" class="proditem__link" @click="remove_from_cart(item.id)">remove</a>)
                         </li>
                     </template>
-                </proditem>
+                </cartitem>
             </ul>
         </div>
     </div>
@@ -31,32 +32,30 @@
     {{ block.super }}
 
     <script>
-        Vue.component('proditem', {
+        Vue.component('cartitem', {
             delimiters: ['${', '}'],
-            props: ['product'],
-            template: '#tpl-proditem',
+            props: ['item'],
+            template: '#tpl-cart-item',
             methods: {
-                add_to_cart: function(product_id) {
+                remove_from_cart: function(item_id) {
                     var data = {
-                        product_id: product_id,
-                        quantity: 1,
+                        item_id: item_id,
                     };
-                    $.post('/carts/add-to-cart/', data).success(function(d){
+                    $.post('/carts/remove-from-cart/', data).success(function(d){
                         alert('ok');
                     })
                 }
             }
         });
-        var product_list = new Vue({
-            delimiters: ['${', '}'],
-            el: '#products-list',
-            data: {
-                products: [
-                  { id: 0, name: 'Vegetables' },
-                  { id: 1, name: 'Cheese' },
-                  { id: 2, name: 'Whatever else humans are supposed to eat' }
-                ]
-            }
+        $.get('/carts/get-cart-data-ajax/', function(data){
+            console.log(data.items);
+            var cart_items = new Vue({
+                delimiters: ['${', '}'],
+                el: '#cart-items',
+                data: {
+                    items: data.items,
+                }
+            });
         });
     </script>
 {% endblock %}

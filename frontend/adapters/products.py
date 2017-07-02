@@ -1,5 +1,5 @@
 from products.api.queries import AllProductsQuery
-from orchestrator.query_dispatchers import send_query
+from orchestrator.query_handler_registers import send_query
 
 
 def get_all_products():

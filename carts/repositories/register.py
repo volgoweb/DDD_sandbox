@@ -4,7 +4,7 @@ from orchestrator.repository_registers import IRepositoryRegistry, ConfigFileRep
 class RepositoryRegister(ConfigFileRepositoryRegistry):
     # @TODO перенести в app.settings
     _map = {
-        'CartRepository': 'carts.repositories.base.CartRepository'
+        'carts': 'carts.repositories.base.CartsRepo'
     }
 
 

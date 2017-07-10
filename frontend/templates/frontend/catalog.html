@@ -21,7 +21,11 @@
                     <template id="tpl-proditem">
                         <li class="proditem">
                             <strong>${ product.name }</strong>
-                             (<a href="#" class="proditem__link" @click="add_to_cart(product.id)">Add to cart</a>)
+                            <div>
+                                <label>Price:</label>
+                                <span>${ product.main_price.value }</span>
+                            </div>
+                            <a href="#" class="proditem__link" @click="add_to_cart(product.id)">Add to cart</a>
                         </li>
                     </template>
                 </proditem>
@@ -51,6 +55,7 @@
             }
         });
         $.get('/catalog/products-ajax/', function(data){
+            console.log(data, 'products data');
             var product_list = new Vue({
                 delimiters: ['${', '}'],
                 el: '#products-list',

@@ -12,6 +12,8 @@ class QueryHandlerRegister(object):
         'products.AllProductsQuery': 'products.query_handlers.base.AllProducts',
         'carts.CartOfUser': 'carts.query_handlers.base.CartOfUser',
         'products.ProductsByIds': 'products.query_handlers.base.ProductsByIds',
+        'prices.GetProductPricingForManyProducts': 'prices.query_handlers.base.GetProductPricingForManyProducts',
+        'prices.GetProductPricingForAllProducts': 'prices.query_handlers.base.GetProductPricingForAllProductsHandler',
     }
 
     def get(self, query):

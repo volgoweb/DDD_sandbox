@@ -10,6 +10,7 @@ def get_all_products():
         p = {
             'id': dto['id'],
             'name': dto['name'],
+            'main_price': dto['main_price'],
         }
         products.append(p)
     return products

@@ -55,13 +55,15 @@
             }
         });
         $.get('/catalog/products-ajax/', function(data){
-            console.log(data, 'products data');
             var product_list = new Vue({
                 delimiters: ['${', '}'],
                 el: '#products-list',
                 data: {
                     products: data['objects'],
                 }
+            });
+            setInterval(function(){
+
             });
         });
     </script>
